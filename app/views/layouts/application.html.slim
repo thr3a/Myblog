@@ -1,0 +1,18 @@
+doctype html
+html
+	head
+		title Myblog
+		meta name="viewport" content="width=device-width, initial-scale=1.0"
+		= stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag "application", 'data-turbolinks-track' => true
+		= csrf_meta_tags
+	body
+	.container
+		h1 Myblog
+		- if flash[:notice]
+			.container
+				.alert.alert-success = flash[:notice]
+		- if flash[:alert]
+			.container
+				.alert.alert-danger = flash[:alert]
+		= yield

@@ -1,0 +1,11 @@
+.hoge
+	= bootstrap_form_for(@article, inline_errors: false) do |f|
+		- if @article.errors.any?
+			- @article.errors.full_messages.each do |message|
+				.alert.alert-danger = message
+		.field
+			= f.text_field :title
+			.field
+				= f.text_field :content
+		.field
+			= f.submit "投稿"
