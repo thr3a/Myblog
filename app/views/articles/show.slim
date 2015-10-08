@@ -3,8 +3,8 @@
 		.panel.panel-default
 			.panel-heading
 				h4 = link_to @article.title, controller: :articles, action: :show, id: @article.id
-				.panel-body
-					p.text-right = @article.created_at
-					p = @article.content
+			.panel-body
+				p.text-right = @article.created_at
+				p = @article.content
 	.col-md-3
 		= render "sidebar"
