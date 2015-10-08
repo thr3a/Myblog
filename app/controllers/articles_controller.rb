@@ -20,9 +20,26 @@ class ArticlesController < ApplicationController
 		end
 	end
 
+	# GET /:id
 	def show
 		@article = Article.find(params[:id])
 	end
+
+	# GET /:id/edit
+	def edit
+		@article = Article.find(params[:id])
+	end
+
+	# PATCH/PUT /articles/:id
+	def update
+		@article = Article.find(params[:id])
+		if @article.update(article_params)
+			redirect_to root_path, notice: "編集に成功しました"
+		else
+			render :edit
+		end
+	end
+
 	private
 		def article_params
 			params.require(:article).permit(:title, :content)
