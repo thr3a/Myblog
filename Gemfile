@@ -49,3 +49,4 @@ gem "twitter-bootstrap-rails"
 gem "slim-rails"
 gem 'bootstrap_form'
 gem 'redcarpet'
+gem 'coderay'

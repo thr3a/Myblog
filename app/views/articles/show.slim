@@ -8,6 +8,6 @@
 					span = "#{@article.created_at} "
 					= link_to "edit", {controller: "articles", action: "edit", id: @article.id}
 					= link_to "del", @article, method: :delete, data: {confirm: '削除しますね?'}
-				p =  markdown @article.content
+				p = markdown(@article.content).html_safe
 	.col-md-3
 		= render "sidebar"
