@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
 
 	# GET /:id
 	def show
+		@category = Category.all
 		@article = Article.find(params[:id])
 	end
 
@@ -48,9 +49,17 @@ class ArticlesController < ApplicationController
 		redirect_to root_path, notice: '削除に成功しました'
 	end
 
+	# GET /category/:id
+	def category
+		@category = Category.all
+		@articles = Article.where( category: params[:id]).newest.paginate(page: params[:page], per_page: 5)
+		render :index
+	end
+
+
 	def testtest
 		100.times do |i|
-			Article.new(title: "#{i} title", content: SecureRandom.base64(1000)).save
+			Article.new(title: "#{i} title", content: SecureRandom.base64(100), category_id: rand(1..3)).save
 		end
 		redirect_to root_path, notice: '挿入に成功しました'
 	end
