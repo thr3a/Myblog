@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
 
 	# GET /
 	def index
-		@articles = Article.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+		@category = Category.all
+		@articles = Article.newest.paginate(page: params[:page], per_page: 5)
 	end
 
 	# GET /articles/new
