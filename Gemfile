@@ -50,3 +50,4 @@ gem "slim-rails"
 gem 'bootstrap_form'
 gem 'redcarpet'
 gem 'coderay'
+gem 'will_paginate-bootstrap'

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :articles, :path => '/'
   root 'articles#index'
+
+  get 'test/test' => 'articles#testtest'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
