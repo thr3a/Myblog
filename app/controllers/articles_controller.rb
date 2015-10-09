@@ -47,6 +47,12 @@ class ArticlesController < ApplicationController
 		redirect_to root_path, notice: '削除に成功しました'
 	end
 
+	def testtest
+		100.times do |i|
+			Article.new(title: "#{i} title", content: SecureRandom.base64(1000)).save
+		end
+		redirect_to root_path, notice: '挿入に成功しました'
+	end
 	private
 		def article_params
 			params.require(:article).permit(:title, :content)
