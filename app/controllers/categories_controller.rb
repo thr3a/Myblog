@@ -3,17 +3,16 @@ class CategoriesController < ApplicationController
 	# POST /categories
 	def create
 		@category = Category.new(category_params)
-		if @category.save
-			"ok"
-		else
-			"ng"
-		end
+		@category.save
 	end
 
 	# DELETE /categories/:id
 	def destroy
 		@category = Category.find(params[:id])
 		@category.destroy
-		"ok"
 	end
+	private
+		def category_params
+			params.require(:category).permit(:name)
+		end
 end

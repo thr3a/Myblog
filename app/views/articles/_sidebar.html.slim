@@ -2,5 +2,5 @@
 	= link_to( "一筆", {controller: "articles", action: "new"})
 .well
 	ul
-	- @category.each do |c|
+	- Category.all.each do |c|
 		li = link_to c.name, category_path(c)

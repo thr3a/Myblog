@@ -2,7 +2,6 @@ class ArticlesController < ApplicationController
 
 	# GET /
 	def index
-		@category = Category.all
 		@articles = Article.newest.paginate(page: params[:page], per_page: 5)
 	end
 
@@ -23,7 +22,6 @@ class ArticlesController < ApplicationController
 
 	# GET /:id
 	def show
-		@category = Category.all
 		@article = Article.find(params[:id])
 	end
 
@@ -51,7 +49,6 @@ class ArticlesController < ApplicationController
 
 	# GET /category/:id
 	def category
-		@category = Category.all
 		@articles = Article.where( category: params[:id]).newest.paginate(page: params[:page], per_page: 5)
 		render :index
 	end
