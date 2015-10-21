@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 
 	# GET /
 	def index
-		@articles = Article.recent.paginate(page: params[:page], per_page: 5)
+		@articles = Article.recent.fetchpage(params[:page])
 	end
 
 	# GET /articles/new
@@ -49,21 +49,21 @@ class ArticlesController < ApplicationController
 
 	# GET /category/:id
 	def category
-		@articles = Article.where( category: params[:id]).recent.paginate(page: params[:page], per_page: 5)
+		@articles = Article.where( category: params[:id]).recent.fetchpage(params[:page])
 		render :index
 	end
 	# GET /category/:id
 	def category
-		@articles = Article.where( category: params[:id]).recent.paginate(page: params[:page], per_page: 5)
+		@articles = Article.where( category: params[:id]).recent.fetchpage(params[:page])
 		render :index
 	end
 
 	# GET /archive/:year/:month
 	def archive
 		if params[:month]
-			@articles = Article.by_month(params[:month], year: params[:year]).recent.paginate(page: params[:page], per_page: 5)
+			@articles = Article.by_month(params[:month], year: params[:year]).recent.fetchpage(params[:page])
 		else
-			@articles = Article.by_year(params[:year]).recent.paginate(page: params[:page], per_page: 5)
+			@articles = Article.by_year(params[:year]).recent.fetchpage(params[:page])
 		end
 		render :index
 	end
@@ -71,9 +71,9 @@ class ArticlesController < ApplicationController
 	def testtest
 		Article.record_timestamps = false
 		100.times do |i|
-			from = Date.parse("2010/01/23")
-			to = Date.parse("2015/04/12")
-			s = Random.rand(s1 .. s2)
+			from = Date.parse("2010/01/01")
+			to = Date.parse("2017/12/15")
+			s = Random.rand(from .. to)
 			Article.new(title: "#{i} title", content: SecureRandom.base64(100), category_id: 1, created_at: s, updated_at: s).save
 		end
 		Article.record_timestamps = true

@@ -5,4 +5,5 @@ class Article < ActiveRecord::Base
 	validates :category, presence: true
 
 	scope :recent, -> { order(created_at: :desc) }
+	scope :fetchpage, ->(page) { paginate(page: page, per_page: 5)}
 end
