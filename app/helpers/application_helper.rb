@@ -2,7 +2,7 @@ module ApplicationHelper
 	class HTMLwithCoderay < Redcarpet::Render::HTML
 		def block_code(code, language)
 			language ||= 'md'
-			CodeRay.scan(code, language.to_sym).div(:line_numbers => :table)
+			CodeRay.scan(code, language.to_sym).div(line_numbers: :table)
 		end
 	end
 	def markdown(text)
@@ -12,9 +12,13 @@ module ApplicationHelper
 			no_intra_emphasis: true, # foo_bar_bazをemタグにしない
 			fenced_code_blocks: true, # 「```」によるコードブロック
 			tables: true, # PHP-Markdownスタイルの表を有効化
-			strikethrough: true # ~~」によるdelタグの生成
+			strikethrough: true, # ~~」によるdelタグの生成
 		}
-		html_render = HTMLwithCoderay.new(filter_html: true, hard_wrap: true)
+		html_render = HTMLwithCoderay.new(
+			filter_html: true,
+			hard_wrap: true,
+			link_attributes: { rel: 'nofollow', target: "_blank" }
+		)
 		markdown = Redcarpet::Markdown.new(html_render, redcarpet_options)
 		markdown.render(text)
 	end
