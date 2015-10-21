@@ -4,5 +4,5 @@ class Article < ActiveRecord::Base
 	validates :content, presence: true
 	validates :category, presence: true
 
-	scope :newest, -> { order(created_at: :desc) }
+	scope :recent, -> { order(created_at: :desc) }
 end

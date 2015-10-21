@@ -1,6 +1,12 @@
 .well
 	= link_to( "一筆", {controller: "articles", action: "new"})
 .well
+	label カテゴリ
 	ul
 	- Category.all.each do |c|
 		li = link_to c.name, category_path(c)
+.well
+	label アーカイブ
+	ul
+	- Time.now.year.downto(Article.first.created_at.year) do |y|
+		li = link_to "#{y}(#{Article.by_year(y).count})", archive_articles_path(year: y)

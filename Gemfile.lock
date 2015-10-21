@@ -41,6 +41,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap_form (2.3.0)
     builder (3.2.2)
+    by_star (2.2.1)
+      activesupport
     byebug (6.0.2)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -161,6 +163,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap_form
+  by_star
   byebug
   coderay
   coffee-rails (~> 4.1.0)
