@@ -72,7 +72,7 @@ class ArticlesController < ApplicationController
 		Article.record_timestamps = false
 		100.times do |i|
 			from = Date.parse("2010/01/01")
-			to = Date.parse("2017/12/15")
+			to = Date.parse("2015/01/01")
 			s = Random.rand(from .. to)
 			Article.new(title: "#{i} title", content: SecureRandom.base64(100), category_id: 1, created_at: s, updated_at: s).save
 		end

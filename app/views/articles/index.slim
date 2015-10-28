@@ -6,7 +6,7 @@
 					h4 = link_to(article.title, article_path(article))
 				.panel-body
 					p.text-right = article.created_at.to_s(:date)
-					p = markdown(article.content).html_safe
+					.article-body = markdown(article.content).html_safe
 		.text-center
 			= will_paginate @articles, renderer: BootstrapPagination::Rails, previous_label: "前", next_label: "次", inner_window: 2
 	.col-md-3
