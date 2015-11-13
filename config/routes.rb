@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
 	get 'test/test' => 'articles#testtest'
 
+	# twitter 認証
+	get 'auth/:provider/callback' => 'sessions#create'
+  get 'auth/signout' => 'sessions#destroy'
+
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 
