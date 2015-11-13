@@ -52,3 +52,6 @@ gem 'redcarpet'
 gem 'coderay'
 gem 'will_paginate-bootstrap'
 gem 'by_star'
+gem 'omniauth-twitter'
+# export TWITTER_KEY=lME8Y7yU87oMo5rIprBuarTP0
+# export TWITTER_SECRET=xIsN2onlKcwcodO5aDTmTZynDbap4fxeBjJUZmB32O4Cmnc1CV
