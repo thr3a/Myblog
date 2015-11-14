@@ -13,8 +13,8 @@ class Article < ActiveRecord::Base
 	private
 	def authenticate_user
 		permit_users = ["1179190262"]
-		if permit_users.include?(author)
-			error.add(:author, "認証されたアカウントではありません")
+		if !permit_users.include?(author)
+			errors.add(:author, "が認証されたアカウントではありません")
 		end
 	end
 end
