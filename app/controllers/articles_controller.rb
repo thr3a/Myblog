@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
 		@article = Article.new(article_params)
 		@article.author = session[:user]["nickname"]
 		if @article.save
-			redirect_to root_path, notice: "投稿に成功しました"
+			redirect_to article_path(@article.id), notice: "投稿に成功しました"
 		else
 			render :new
 		end
@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
 	def update
 		@article = Article.find(params[:id])
 		if @article.update(article_params)
-			redirect_to root_path, notice: "編集に成功しました"
+			redirect_to article_path(@article.id), notice: "編集に成功しました"
 		else
 			render :edit
 		end
