@@ -18,4 +18,4 @@
 		= f.collection_select :category_id, Category.all, :id, :name, label: "カテゴリ"
 	
 	.field
-		= f.submit "投稿", class: "btn btn-primary"
+		= f.submit "投稿", class: "btn btn-primary", data: {disable_with: "送信中..."}
