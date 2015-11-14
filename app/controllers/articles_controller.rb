@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
 
+	before_action :authenticate_user, only: [:new, :create, :edit, :update, :destroy]
+
+
 	# GET /
 	def index
 		@articles = Article.recent.fetchpage(params[:page])
@@ -82,5 +85,19 @@ class ArticlesController < ApplicationController
 	private
 		def article_params
 			params.require(:article).permit(:title, :content, :category_id)
+		end
+
+		# セッションを元にTwitterログイン済みかどうか
+		def authenticate_user
+			permit_users = ["1179190262"]
+			if session[:user].nil?
+				redirect_to root_path, alert: '先にログインをしてください'
+			else
+				if(permit_users.include?(session[:user]["uid"]))
+					return true
+				else
+					redirect_to root_path, alert: 'このアカウントは承認されていません'+ session[:user]["uid"]
+				end
+			end
 		end
 end

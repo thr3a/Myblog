@@ -4,6 +4,10 @@
 		- @article.errors.full_messages.each do |message|
 			.alert.alert-danger = message
 	
+	.alert.alert-info
+		strong = session[:user]["nickname"]
+		|  でログインしています
+	
 	.field
 		= f.text_field :title
 	

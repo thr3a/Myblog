@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
     def create
         data = request.env['omniauth.auth']
         session[:user] = data.info
+        session[:user][:uid] = data.uid
         redirect_to root_path, notice: 'ログインしました'
     end
 
