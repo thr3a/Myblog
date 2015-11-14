@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
 	# POST /articles
 	def create
 		@article = Article.new(article_params)
+		@article.author = session[:user]["nickname"]
 		if @article.save
 			redirect_to root_path, notice: "投稿に成功しました"
 		else
