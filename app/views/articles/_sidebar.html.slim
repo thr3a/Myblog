@@ -10,7 +10,7 @@
 	label カテゴリ
 	ul
 	- Category.all.each do |c|
-		li = link_to c.name, category_path(c)
+		li = link_to c.name, category_path(c.name)
 .well
 	label アーカイブ
 	ul

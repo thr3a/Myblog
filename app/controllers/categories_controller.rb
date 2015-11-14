@@ -11,6 +11,10 @@ class CategoriesController < ApplicationController
 		@category = Category.find(params[:id])
 		@category.destroy
 	end
+
+	def show
+	end
+
 	private
 		def category_params
 			params.require(:category).permit(:name)

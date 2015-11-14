@@ -53,12 +53,8 @@ class ArticlesController < ApplicationController
 
 	# GET /category/:id
 	def category
-		@articles = Article.where( category: params[:id]).recent.fetchpage(params[:page])
-		render :index
-	end
-	# GET /category/:id
-	def category
-		@articles = Article.where( category: params[:id]).recent.fetchpage(params[:page])
+		p params[:id]
+		@articles = Category.find_by(name: params[:name]).articles.recent.fetchpage(params[:page])
 		render :index
 	end
 
@@ -72,17 +68,6 @@ class ArticlesController < ApplicationController
 		render :index
 	end
 
-	def testtest
-		Article.record_timestamps = false
-		100.times do |i|
-			from = Date.parse("2010/01/01")
-			to = Date.parse("2015/01/01")
-			s = Random.rand(from .. to)
-			Article.new(title: "#{i} title", content: SecureRandom.base64(100), category_id: 1, created_at: s, updated_at: s).save
-		end
-		Article.record_timestamps = true
-		redirect_to root_path, notice: '挿入に成功しました'
-	end
 	private
 		def article_params
 			params.require(:article).permit(:title, :content, :category_id)
