@@ -11,23 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116084424) do
+ActiveRecord::Schema.define(version: 20151116084701) do
 
   create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "category_id"
-    t.string   "author_id"
+    t.string   "title",       limit: 255
+    t.text     "content",     limit: 65535
+    t.string   "category_id", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "author_id",   limit: 255
   end
 
-  add_index "articles", ["category_id"], name: "index_articles_on_category_id"
+  create_table "authors", primary_key: "uid", force: :cascade do |t|
+    t.string   "scname",     limit: 255
+    t.string   "image",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "authors", ["uid"], name: "index_authors_on_uid", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
