@@ -7,7 +7,7 @@
 				.panel-body
 					p.text-right
 						= article.created_at.to_s(:date)
-						= " #{article.category.name}"
+						= link_to article.category.name, category_path(article.category.name)
 					.article-body = markdown(article.content).html_safe
 		.text-center
 			= will_paginate @articles, renderer: BootstrapPagination::Rails, previous_label: "前", next_label: "次", inner_window: 2

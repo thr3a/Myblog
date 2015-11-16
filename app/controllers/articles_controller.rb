@@ -16,6 +16,10 @@ class ArticlesController < ApplicationController
 	# POST /articles
 	def create
 		@article = Article.new(article_params)
+		# 今までにないカテゴリが付与されていた場合はカテゴリも新規作成
+		if params[:new_category].present?
+			@article.category_id = Category.find_or_create_by(name: params[:new_category]).id
+		end
 		@article.author = session[:user]["nickname"]
 		if @article.save
 			redirect_to article_path(@article.id), notice: "投稿に成功しました"
@@ -37,6 +41,11 @@ class ArticlesController < ApplicationController
 	# PATCH/PUT /articles/:id
 	def update
 		@article = Article.find(params[:id])
+		# 今までにないカテゴリが付与されていた場合はカテゴリも新規作成
+		if params[:new_category].present?
+			# Article.last.update(category_id: Category.find_or_create_by(name: "しめじ").id)
+			p @article.update(category_id: Category.find_or_create_by(name: params[:new_category]).id)
+		end
 		if @article.update(article_params)
 			redirect_to article_path(@article.id), notice: "編集に成功しました"
 		else
@@ -70,7 +79,7 @@ class ArticlesController < ApplicationController
 
 	private
 		def article_params
-			params.require(:article).permit(:title, :content, :category_id)
+			params.require(:article).permit(:title, :content, :category_id, :new_category)
 		end
 
 		# セッションを元にTwitterログイン済みかどうか
