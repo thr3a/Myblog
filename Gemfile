@@ -56,3 +56,4 @@ gem 'omniauth-twitter'
 # export TWITTER_KEY=lME8Y7yU87oMo5rIprBuarTP0
 # export TWITTER_SECRET=xIsN2onlKcwcodO5aDTmTZynDbap4fxeBjJUZmB32O4Cmnc1CV
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+gem 'mysql2', '~> 0.3.20'
