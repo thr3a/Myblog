@@ -1,11 +1,11 @@
 .well
 	- if session[:user]
-		p = session[:user].to_json
-		=link_to 'ログアウト', '/auth/signout'
+		ul
+			li =link_to( "一筆", {controller: "articles", action: "new"})
+			li =link_to 'ログアウト', '/auth/signout'
 	- else
-		=link_to 'Twitterでログイン', '/auth/twitter'
-.well
-	= link_to( "一筆", {controller: "articles", action: "new"})
+		ul
+			li =link_to 'Twitterでログイン', '/auth/twitter'
 .well
 	label カテゴリ
 	ul
