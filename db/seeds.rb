@@ -5,10 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# ダミーアカウント追加
+Author.create(uid:"1179190262", scname:"amenekey", image:"https://pbs.twimg.com/profile_images/664096442835820544/edyJrRSj.jpg")
+
+# ダミーカテゴリ追加
 Category.create(name: "その他")
 Category.create(name: "Ruby")
 Category.create(name: "Javascript")
 Category.create(name: "ねこ")
-
-
-Article.create(title: "no title", content: "hello world!", category_id: 1, author: "1179190262")
+#
+# # ダミー記事追加
+Article.create(title: "これはあなたです！", content: "なわけないだろ", category_id: 1, author_id: "1179190262")
