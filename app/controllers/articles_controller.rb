@@ -15,12 +15,13 @@ class ArticlesController < ApplicationController
 
 	# POST /articles
 	def create
+		p session[:user][:uid]
 		@article = Article.new(article_params)
 		# 今までにないカテゴリが付与されていた場合はカテゴリも新規作成
 		if params[:new_category].present?
 			@article.category_id = Category.find_or_create_by(name: params[:new_category]).id
 		end
-		@article.author = session[:user]["nickname"]
+		@article.author_id = session[:user]["uid"]
 		if @article.save
 			redirect_to article_path(@article.id), notice: "投稿に成功しました"
 		else
