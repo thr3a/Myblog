@@ -1,6 +1,9 @@
 class Article < ActiveRecord::Base
 
-	belongs_to :category
+	belongs_to :category, foreign_key: "category_id"
+
+	belongs_to :author, foreign_key: "author_id", primary_key: "uid"
+
 	validates :title, presence: true, length: { maximum: 30 }
 	validates :content, presence: true
 	validates :category, presence: true
