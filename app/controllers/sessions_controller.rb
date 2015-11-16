@@ -1,9 +1,13 @@
 class SessionsController < ApplicationController
     def create
         data = request.env['omniauth.auth']
-        session[:user] = data.info
-        session[:user][:uid] = data.uid
-        redirect_to root_path, notice: 'ログインしました'
+        if Author.exists?(uid:data.uid)
+          session[:user] = data.info
+          session[:user][:uid] = data.uid
+          redirect_to root_path, notice: 'ログインしました'
+        else
+          redirect_to root_path, alert: 'このアカウントは権限がありません'
+        end
     end
 
     def destroy
@@ -12,6 +16,6 @@ class SessionsController < ApplicationController
     end
 
     def oauth_failure
-        redirect_to root_path, notice: 'ログインに失敗しました'
+        redirect_to root_path, alert: 'ログインに失敗しました'
     end
 end
