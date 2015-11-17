@@ -16,4 +16,4 @@ Category.create(name: "Javascript")
 Category.create(name: "ねこ")
 #
 # # ダミー記事追加
-Article.create(title: "これはあなたです！", content: "なわけないだろ", category_id: 1, author_id: "1179190262")
+Article.create(title: "これはあなたです！", content: "なわけないだろ", category_id: Category.first.id, author_id: "1179190262")

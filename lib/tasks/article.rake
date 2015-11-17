@@ -4,6 +4,14 @@ namespace :article do
 		Article.delete_all
 	end
 
+	desc "delete dummy data"
+	task hoge: :environment do
+		Article.destroy_all
+		Category.destroy_all
+		Author.destroy_all
+		ArticleAttachment.destroy_all
+	end
+
 	desc "insert dummy data"
 	task insert: :environment do
 		Article.record_timestamps = false
