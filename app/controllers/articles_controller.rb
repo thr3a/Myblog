@@ -92,15 +92,10 @@ class ArticlesController < ApplicationController
 
 		# セッションを元にTwitterログイン済みかどうか
 		def authenticate_user
-			permit_users = ["1179190262"]
 			if session[:user].nil?
 				redirect_to root_path, alert: '先にログインをしてください'
-			else
-				if(permit_users.include?(session[:user]["uid"]))
-					return true
-				else
-					redirect_to root_path, alert: 'このアカウントは承認されていません'+ session[:user]["uid"]
-				end
+			elsif Author.exists?(uid:session[:user]["uid"])
+				redirect_to root_path, alert: 'このアカウントは承認されていません'
 			end
 		end
 end
