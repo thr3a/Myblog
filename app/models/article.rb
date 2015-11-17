@@ -4,6 +4,9 @@ class Article < ActiveRecord::Base
 
 	belongs_to :author, foreign_key: "author_id", primary_key: "uid"
 
+	has_many :article_attachments
+	accepts_nested_attributes_for :article_attachments
+
 	validates :title, presence: true, length: { maximum: 30 }
 	validates :content, presence: true
 	validates :category, presence: true
