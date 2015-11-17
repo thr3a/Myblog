@@ -67,9 +67,12 @@ class ArticlesController < ApplicationController
 
 	# GET /category/:id
 	def category
-		p params[:id]
-		@articles = Category.find_by(name: params[:name]).articles.recent.fetchpage(params[:page])
-		render :index
+		if(@articles = Category.find_by(name: params[:name]))
+			@articles = @articles.articles.recent.fetchpage(params[:page])
+			render :index
+		else
+			redirect_to root_path
+		end
 	end
 
 	# GET /archive/:year/:month

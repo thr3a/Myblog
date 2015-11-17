@@ -2,17 +2,18 @@ Rails.application.routes.draw do
 	# TOPページ
 	root 'articles#index'
 
-	# 記事ルーティング
-	resources :articles, path: '/' do
-		get 'archive', on: :collection # archive_articles_pathが生成
-	end
-
 	# twitter 認証
 	get 'auth/:provider/callback' => 'sessions#create'
 	get 'auth/signout' => 'sessions#destroy'
 
-	resources :categories, path: 'category', only: [ :create, :destroy]
+	# カテゴリ
+	resources :categories, path: 'category', only: [:index, :create, :destroy]
 	get 'category/:name' => 'articles#category'
+
+	# 記事ルーティング
+	resources :articles, path: '/' do
+		get 'archive', on: :collection # archive_articles_pathが生成
+	end
 	# post 'categories/create'
 	# delete 'categories/delete'
 

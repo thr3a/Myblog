@@ -12,7 +12,8 @@ class CategoriesController < ApplicationController
 		@category.destroy
 	end
 
-	def show
+	def index
+		redirect_to root_path
 	end
 
 	private
