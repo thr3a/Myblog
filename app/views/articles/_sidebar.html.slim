@@ -14,5 +14,6 @@
 .well
 	label アーカイブ
 	ul
-	- Time.now.year.downto(Article.first.created_at.year) do |y|
-		li = link_to "#{y}(#{Article.by_year(y).count})", archive_articles_path(year: y)
+	- if Article.count != 0
+		- Time.now.year.downto(Article.first.created_at.year) do |y|
+			li = link_to "#{y}(#{Article.by_year(y).count})", archive_articles_path(year: y)

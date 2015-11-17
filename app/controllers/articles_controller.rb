@@ -77,7 +77,7 @@ class ArticlesController < ApplicationController
 
 	# GET /archive/:year/:month
 	def archive
-		if params[:month]
+		if params[:month].present?
 			@articles = Article.by_month(params[:month], year: params[:year]).recent.fetchpage(params[:page])
 		else
 			@articles = Article.by_year(params[:year]).recent.fetchpage(params[:page])
@@ -94,8 +94,8 @@ class ArticlesController < ApplicationController
 		def authenticate_user
 			if session[:user].nil?
 				redirect_to root_path, alert: '先にログインをしてください'
-			elsif Author.exists?(uid:session[:user]["uid"])
-				redirect_to root_path, alert: 'このアカウントは承認されていません'
+			elsif !Author.exists?(uid:session[:user]["uid"])
+				redirect_to root_path, alert: 'このアカウントは承認されていません'+session[:user]["uid"]
 			end
 		end
 end
