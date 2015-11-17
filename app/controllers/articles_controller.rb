@@ -20,7 +20,6 @@ class ArticlesController < ApplicationController
 
 	# POST /articles
 	def create
-		p session[:user][:uid]
 		@article = Article.new(article_params)
 		# 今までにないカテゴリが付与されていた場合はカテゴリも新規作成
 		if params[:new_category].present?
@@ -51,12 +50,8 @@ class ArticlesController < ApplicationController
 	# PATCH/PUT /articles/:id
 	def update
 		@article = Article.find(params[:id])
-		# 今までにないカテゴリが付与されていた場合はカテゴリも新規作成
-		if params[:new_category].present?
-			# Article.last.update(category_id: Category.find_or_create_by(name: "しめじ").id)
-			p @article.update(category_id: Category.find_or_create_by(name: params[:new_category]).id)
-		end
 		if @article.update(article_params)
+			@article.update(category_id: Category.find_or_create_by(name: params[:new_category]).id) if(params[:new_category].present?)
 			redirect_to article_path(@article.id), notice: "編集に成功しました"
 		else
 			render :edit
