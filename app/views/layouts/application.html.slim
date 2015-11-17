@@ -15,4 +15,8 @@ html
 		- if flash[:alert]
 			.container
 				.alert.alert-danger = flash[:alert]
-		= yield
+		.row
+			.col-md-9
+				= yield
+			.col-md-3
+				= render "sidebar"

@@ -1,15 +1,11 @@
-.row
-	.col-md-9
-		- @articles.each do |article|
-			.panel.panel-default
-				.panel-heading
-					h4 = link_to(article.title, article_path(article))
-				.panel-body
-					p.text-right
-						= article.created_at.to_s(:date)
-						= link_to article.category.name, category_path(article.category.name)
-					.article-body = markdown(article.content).html_safe
-		.text-center
-			= will_paginate @articles, renderer: BootstrapPagination::Rails, previous_label: "前", next_label: "次", inner_window: 2
-	.col-md-3
-		= render "sidebar"
+- @articles.each do |article|
+		.panel.panel-default
+			.panel-heading
+				h4 = link_to(article.title, article_path(article))
+			.panel-body
+				p.text-right
+					= article.created_at.to_s(:date)
+					= link_to article.category.name, category_path(article.category.name)
+				.article-body = markdown(article.content).html_safe
+.text-center
+	= will_paginate @articles, renderer: BootstrapPagination::Rails, previous_label: "前", next_label: "次", inner_window: 2
