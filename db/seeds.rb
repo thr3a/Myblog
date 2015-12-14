@@ -7,13 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # ダミーアカウント追加
-Author.create(uid:"1179190262", scname:"amenekey", image:"https://pbs.twimg.com/profile_images/664096442835820544/edyJrRSj.jpg")
+Author.create(uid:"1179190262", scname:"amenekey", image:"")
 
 # ダミーカテゴリ追加
 Category.create(name: "その他")
-Category.create(name: "Ruby")
-Category.create(name: "Javascript")
-Category.create(name: "ねこ")
-#
-# # ダミー記事追加
-Article.create(title: "これはあなたです！", content: "なわけないだろ", category_id: Category.first.id, author_id: "1179190262")
+
+# ダミー記事追加
+Article.create(title: "こんにちは！", content: "はじめまして", category_id: Category.first.id, author_id: Author.first.uid)
