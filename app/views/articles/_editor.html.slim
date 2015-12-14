@@ -17,8 +17,5 @@
 	.field
 		= f.collection_select :category_id, Category.all, :id, :name, label: "カテゴリ"
 		= text_field_tag :new_category, "", class: "form-control", placeholder: "新規追加する場合"
-	/ = f.fields_for :article_attachments do |gazo|
-	/ 	.field
-	/ 		= f.file_field :image, :multiple => true, name: "article_attachments[image][]"
 	.field
 		= f.submit "投稿", class: "btn btn-primary", data: {disable_with: "送信中..."}

@@ -15,7 +15,6 @@ class ArticlesController < ApplicationController
 	# GET /articles/new
 	def new
 		@article = Article.new
-		@article_attachments = @article.article_attachments.build
 	end
 
 	# POST /articles
@@ -27,9 +26,6 @@ class ArticlesController < ApplicationController
 		end
 		@article.author_id = session[:user]["uid"]
 		if @article.save
-			# params[:article_attachments]['image'].each do |i|
-			# 	 @article_attachments = @article.article_attachments.create!(image: i)
-			# end
 			redirect_to article_path(@article.id), notice: "投稿に成功しました"
 		else
 			render :new
@@ -39,7 +35,6 @@ class ArticlesController < ApplicationController
 	# GET /:id
 	def show
 		@article = Article.find(params[:id])
-		@article_attachments = @article.article_attachments.all
 	end
 
 	# GET /:id/edit

@@ -9,5 +9,3 @@
 			= link_to " 削除", @article, method: :delete, data: {confirm: '削除しますね?'}
 		.article-body
 			= markdown(@article.content).html_safe
-			- @article.article_attachments.all.each do |img|
-				= image_tag img.image.thumb.url
