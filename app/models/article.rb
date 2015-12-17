@@ -7,7 +7,7 @@ class Article < ActiveRecord::Base
 	has_many :article_attachments
 	accepts_nested_attributes_for :article_attachments
 
-	validates :title, presence: true, length: { maximum: 30 }
+	validates :title, presence: true, length: { maximum: 50 }
 	validates :content, presence: true
 	validates :category, presence: true
 	validates :author_id, presence: true
