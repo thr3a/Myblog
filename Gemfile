@@ -45,7 +45,7 @@ group :development do
   gem 'spring'
 end
 
-gem "twitter-bootstrap-rails"
+# gem "twitter-bootstrap-rails"
 gem "slim-rails"
 gem 'bootstrap_form'
 gem 'redcarpet'
