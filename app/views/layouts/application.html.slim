@@ -13,9 +13,21 @@ html
 					h1 = link_to Myblog::Application.config.title, root_path
 		.container
 			- if flash[:notice]
-				.alert.alert-success = flash[:notice]
+				/ 単一のメッセージの場合
+				- if flash[:notice].kind_of?(String)
+					.alert.alert-success = flash[:notice]
+				/ 複数のメッセージ(フォームのバリデーション等)の場合
+				- else
+					- flash[:notice].each do |message|
+						.alert.alert-success = message
 			- if flash[:alert]
-				.alert.alert-danger = flash[:alert]
+				/ 単一のメッセージの場合
+				- if flash[:alert].kind_of?(String)
+					.alert.alert-danger = flash[:alert]
+				/ 複数のメッセージ(フォームのバリデーション等)の場合
+				- else
+					- flash[:alert].each do |message|
+						.alert.alert-danger = message
 			.row
 				.col-md-9
 					= yield
