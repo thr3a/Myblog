@@ -1,10 +1,12 @@
-.panel.panel-success
+.panel.panel-default
 	.panel-heading
-		h2 = link_to(article.title, article_path(article))
-	.panel-body
-		.text-right
-			p = "#{article.created_at} "
-			= link_to article.category.name, category_path(article.category.name)
+		h4 = link_to(article.title, article_path(article))
+		- if session[:user]
 			= link_to " 編集", {controller: "articles", action: "edit", id: article.id}
 			= link_to " 削除", article, method: :delete, data: {confirm: '削除しますね?'}
+	.panel-body
+		.text-right
+			p
+				= article.created_at
+				= link_to article.category.name, category_path(article.category.name)
 		.article-body = markdown(article.content).html_safe

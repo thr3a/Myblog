@@ -7,9 +7,10 @@ html
 		= javascript_include_tag "application", 'data-turbolinks-track' => true
 		= csrf_meta_tags
 	body
-		.jumbotron
-			.text-center
-				h1 = link_to Myblog::Application.config.title, root_path
+		header
+			.jumbotron
+				.text-center
+					h1 = link_to Myblog::Application.config.title, root_path
 		.container
 			- if flash[:notice]
 				.alert.alert-success = flash[:notice]
@@ -20,3 +21,5 @@ html
 					= yield
 				.col-md-3
 					= render "sidebar"
+			footer
+				p.text-center = link_to Myblog::Application.config.title, root_path

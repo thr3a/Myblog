@@ -1,19 +1,21 @@
-.well
-	- if session[:user]
+- if session[:user]
+	.well
+		label = "@#{session[:user]["nickname"]}"
 		ul
-			li =link_to( "一筆", {controller: "articles", action: "new"})
+			li =link_to( "一筆", new_article_path)
 			li =link_to 'ログアウト', '/auth/signout'
-	- else
-		ul
-			li =link_to 'Twitterでログイン', '/auth/twitter'
-.well
+.category
 	label カテゴリ
-	ul
-	- Category.all.each do |c|
-		li = link_to "#{c.name}(#{c.articles.count})", category_path(c.name)
-.well
+	ul.list-group
+		- Category.all.each do |c|
+			= link_to category_path(c.name), class: "list-group-item" do
+				span = c.name
+				span.badge = c.articles.count
+.archive
 	label アーカイブ
-	ul
-	- if Article.count != 0
-		- Time.now.year.downto(Article.first.created_at.year) do |y|
-			li = link_to "#{y}(#{Article.by_year(y).count})", archive_articles_path(year: y)
+	ul.list-group
+		- if Article.count != 0
+			- Time.now.year.downto(Article.first.created_at.year) do |y|
+				= link_to archive_articles_path(year: y), class: "list-group-item" do
+					span = y
+					span.badge = Article.by_year(y).count
