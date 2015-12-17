@@ -1,22 +1,22 @@
 doctype html
 html
 	head
-		title Myblog
+		title = Myblog::Application.config.title
 		meta name="viewport" content="width=device-width, initial-scale=1.0"
 		= stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
 		= javascript_include_tag "application", 'data-turbolinks-track' => true
 		= csrf_meta_tags
 	body
-	.container
-		h1 = link_to 'Myblog', root_path
-		- if flash[:notice]
-			.container
+		.jumbotron
+			.text-center
+				h1 = link_to Myblog::Application.config.title, root_path
+		.container
+			- if flash[:notice]
 				.alert.alert-success = flash[:notice]
-		- if flash[:alert]
-			.container
+			- if flash[:alert]
 				.alert.alert-danger = flash[:alert]
-		.row
-			.col-md-9
-				= yield
-			.col-md-3
-				= render "sidebar"
+			.row
+				.col-md-9
+					= yield
+				.col-md-3
+					= render "sidebar"
