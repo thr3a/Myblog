@@ -60,3 +60,4 @@ gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem 'mysql2', '~> 0.3.20'
 # for other
 # gem 'mysql2'
+gem 'therubyracer'
