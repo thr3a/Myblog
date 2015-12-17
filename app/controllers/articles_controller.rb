@@ -28,6 +28,7 @@ class ArticlesController < ApplicationController
 		if @article.save
 			redirect_to article_path(@article.id), notice: "投稿に成功しました"
 		else
+			flash.now[:alert] = @article.errors.full_messages
 			render :new
 		end
 	end
