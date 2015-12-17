@@ -51,11 +51,6 @@ GEM
     by_star (2.2.1)
       activesupport
     byebug (8.2.1)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -93,7 +88,6 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
-    mini_magick (4.3.6)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
@@ -200,13 +194,11 @@ DEPENDENCIES
   bootstrap_form
   by_star
   byebug
-  carrierwave
   coderay
   coffee-rails (~> 4.1.0)
   data-confirm-modal!
   jbuilder (~> 2.0)
   jquery-rails
-  mini_magick
   mysql2 (~> 0.3.20)
   omniauth-twitter
   rails (= 4.2.4)
