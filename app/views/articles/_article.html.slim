@@ -1,6 +1,6 @@
 .panel.panel-default
 	.panel-heading
-		h4 = link_to(article.title, article_path(article))
+		h1 = link_to(article.title, article_path(article))
 		- if session[:user]
 			= link_to " 編集", {controller: "articles", action: "edit", id: article.id}
 			= link_to " 削除", article, method: :delete, data: {confirm: '削除しますね?'}

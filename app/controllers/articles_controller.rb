@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
 	# GET /articles/new
 	def new
 		@article = Article.new
+		@title = "新規作成中"
 	end
 
 	# POST /articles
@@ -36,11 +37,13 @@ class ArticlesController < ApplicationController
 	# GET /:id
 	def show
 		@article = Article.find(params[:id])
+		@title = @article.title
 	end
 
 	# GET /:id/edit
 	def edit
 		@article = Article.find(params[:id])
+		@title = "編集中:" + @article.title
 	end
 
 	# PATCH/PUT /articles/:id
@@ -50,6 +53,7 @@ class ArticlesController < ApplicationController
 			@article.update(category_id: Category.find_or_create_by(name: params[:new_category]).id) if(params[:new_category].present?)
 			redirect_to article_path(@article.id), notice: "編集に成功しました"
 		else
+			flash.now[:alert] = @article.errors.full_messages
 			render :edit
 		end
 	end
@@ -63,8 +67,9 @@ class ArticlesController < ApplicationController
 
 	# GET /category/:id
 	def category
-		if(@articles = Category.find_by(name: params[:name]))
-			@articles = @articles.articles.recent.fetchpage(params[:page])
+		if(category = Category.find_by(name: params[:name]))
+			@title = "#{category.name}の記事一覧"
+			@articles = category.articles.recent.fetchpage(params[:page])
 			render :index
 		else
 			redirect_to root_path
@@ -83,8 +88,10 @@ class ArticlesController < ApplicationController
 	def archive
 		if params[:month].present?
 			@articles = Article.by_month(params[:month], year: params[:year]).recent.fetchpage(params[:page])
+			@title = "#{params[:year]}年#{params[:month]}月の記事一覧"
 		else
 			@articles = Article.by_year(params[:year]).recent.fetchpage(params[:page])
+			@title = "#{params[:year]}年の記事一覧"
 		end
 		render :index
 	end
