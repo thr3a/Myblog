@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 	# 記事ルーティング
 	resources :articles, path: '/' do
 		get 'archive', on: :collection # archive_articles_pathが生成
+		get 'feed' => 'articles#feed'
 	end
 	# post 'categories/create'
 	# delete 'categories/delete'

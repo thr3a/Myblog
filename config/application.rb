@@ -33,5 +33,6 @@ module Myblog
     config.active_record.raise_in_transactional_callbacks = true
 
     config.title = "turai.work"
+    config.description = "サーバーサイドとかフロントエンドとかの備忘録"
   end
 end

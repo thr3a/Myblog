@@ -71,6 +71,14 @@ class ArticlesController < ApplicationController
 		end
 	end
 
+	# GET /article/feed
+	def feed
+		@articles = Article.recent.last(30)
+		respond_to do |format|
+			format.xml { render :layout => false }
+		end
+	end
+
 	# GET /archive/:year/:month
 	def archive
 		if params[:month].present?
