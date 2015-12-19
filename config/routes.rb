@@ -11,9 +11,10 @@ Rails.application.routes.draw do
 	get 'category/:name' => 'articles#category'
 
 	# 記事ルーティング
-	resources :articles, path: '/' do
+	resources :articles do
 		get 'archive', on: :collection # archive_articles_pathが生成
-		get 'feed' => 'articles#feed'
+		get 'feed', on: :collection
+		get 'admin', on: :collection
 	end
 	# post 'categories/create'
 	# delete 'categories/delete'
