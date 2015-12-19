@@ -14,7 +14,7 @@ class Article < ActiveRecord::Base
 	validate :author_id, :authenticate_user
 
 	scope :recent, -> { order(created_at: :desc) }
-	scope :fetchpage, ->(page) { paginate(page: page, per_page: 5)}
+	scope :fetchpage, ->(page, per_page) { paginate(page: page, per_page: per_page)}
 
 	private
 	def authenticate_user

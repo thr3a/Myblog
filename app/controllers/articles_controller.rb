@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
 
-	before_action :authenticate_user, only: [:new, :create, :edit, :update, :destroy]
+	before_action :authenticate_user, only: [:new, :create, :edit, :update, :destroy, :admin]
 
 
 	def new
@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 
 	# GET /
 	def index
-		@articles = Article.recent.fetchpage(params[:page])
+		@articles = Article.recent.fetchpage(params[:page], 5)
 	end
 
 	# GET /articles/new
@@ -69,7 +69,7 @@ class ArticlesController < ApplicationController
 	def category
 		if(category = Category.find_by(name: params[:name]))
 			@title = "#{category.name}の記事一覧"
-			@articles = category.articles.recent.fetchpage(params[:page])
+			@articles = category.articles.recent.fetchpage(params[:page], 5)
 			render :index
 		else
 			redirect_to root_path
@@ -87,18 +87,24 @@ class ArticlesController < ApplicationController
 	# GET /archive/:year/:month
 	def archive
 		if params[:month].present?
-			@articles = Article.by_month(params[:month], year: params[:year]).recent.fetchpage(params[:page])
+			@articles = Article.by_month(params[:month], year: params[:year]).recent.fetchpage(params[:page], 5)
 			@title = "#{params[:year]}年#{params[:month]}月の記事一覧"
 		else
-			@articles = Article.by_year(params[:year]).recent.fetchpage(params[:page])
+			@articles = Article.by_year(params[:year]).recent.fetchpage(params[:page], 5)
 			@title = "#{params[:year]}年の記事一覧"
 		end
 		render :index
 	end
 
+	# GET /admin
+	def admin
+		@articles = Article.where(author_id: session[:user]["uid"]).recent.fetchpage(params[:page], 20)
+		render :admin
+	end
+
 	private
 		def article_params
-			params.require(:article).permit(:title, :content, :category_id, :new_category, post_attachments_attributes: [:id, :article_id, :image])
+			params.require(:article).permit(:title, :content, :category_id, :new_category)
 		end
 
 		# セッションを元にTwitterログイン済みかどうか

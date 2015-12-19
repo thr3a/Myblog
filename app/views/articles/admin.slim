@@ -1,0 +1,18 @@
+.well
+	label 記事の管理
+	- if @articles
+		table.table.table-striped
+			thead
+				tr
+					th.col-md-9 タイトル
+					th.col-md-3 機能
+			tbody
+				- @articles.each do |article|
+					tr
+						td = link_to(article.title, article_path(article))
+						td
+							.btn-group
+								= link_to "編集", edit_article_path(article), class: "btn btn-primary"
+								= link_to "削除", article, method: :delete, data: {confirm: '削除しますね?'}, class: "btn btn-danger"
+	.text-center
+		= will_paginate @articles, renderer: BootstrapPagination::Rails, previous_label: "前", next_label: "次", inner_window: 2
