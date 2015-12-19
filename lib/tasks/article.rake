@@ -9,7 +9,6 @@ namespace :article do
 		Article.destroy_all
 		Category.destroy_all
 		Author.destroy_all
-		ArticleAttachment.destroy_all
 	end
 
 	desc "insert dummy data"
@@ -19,7 +18,7 @@ namespace :article do
 			from = Date.parse("2010/01/01")
 			to = Date.parse("2015/01/01")
 			s = Random.rand(from .. to)
-			Article.create(title: "#{i} title", content: SecureRandom.base64(100), category_id: Random.rand(1..4), author: "1179190262", created_at: s, updated_at: s)
+			Article.create(title: "#{i} title", content: SecureRandom.base64(100), category_id: Random.rand(1..4), author_id: "1179190262", created_at: s, updated_at: s)
 		end
 		Article.record_timestamps = true
 end
