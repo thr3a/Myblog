@@ -11,6 +11,7 @@ html
 		= favicon_link_tag 'favicon.ico'
 		= stylesheet_link_tag    "application", media: 'all', 'data-turbolinks-track' => true
 		= javascript_include_tag "application", 'data-turbolinks-track' => true
+		= yield :additional_header
 		= csrf_meta_tags
 	body.no-thank-yu
 		header

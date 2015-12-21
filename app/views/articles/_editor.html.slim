@@ -1,7 +1,9 @@
+- content_for(:additional_header) do
+	= javascript_include_tag "editor.js"
 = bootstrap_form_for(@article, inline_errors: false) do |f|
 	
 	.field
-		= f.text_field :title
+		= f.text_field :title, append: "000", autofocus: true
 	
 	.field
 		= f.text_area :content, :size => "1x20"
@@ -11,19 +13,3 @@
 		= text_field_tag :new_category, "", class: "form-control", placeholder: "新規追加する場合"
 	.field
 		= f.submit "投稿", class: "btn btn-primary btn-block", data: {disable_with: "送信中..."}
-		/ <form class="form-inline">
-		/   <div class="form-group">
-		/     <label class="sr-only" for="Email">Eメール</label>
-		/     <input type="email" class="form-control" id="Email" placeholder="Eメール">
-		/   </div>
-		/   <div class="form-group">
-		/     <label class="sr-only" for="Password">パスワード</label>
-		/     <input type="password" class="form-control" id="Password" placeholder="パスワード">
-		/   </div>
-		/   <div class="checkbox">
-		/     <label>
-		/       <input type="checkbox"> 記憶する
-		/     </label>
-		/   </div>
-		/   <button type="submit" class="btn btn-default">サインイン</button>
-		/ </form>
