@@ -78,7 +78,7 @@ class ArticlesController < ApplicationController
 
 	# GET /article/feed
 	def feed
-		@articles = Article.recent.last(30)
+		@articles = Article.recent.limit(20)
 		respond_to do |format|
 			format.xml { render :layout => false }
 		end
