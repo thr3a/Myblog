@@ -3,6 +3,7 @@
 		label = "@#{session[:user]["nickname"]}"
 		ul
 			li =link_to( "一筆", new_article_path)
+			li =link_to("管理画面", admin_articles_path)
 			li =link_to 'ログアウト', '/auth/signout'
 .category
 	label カテゴリ
@@ -11,6 +12,11 @@
 			= link_to category_path(c.name), class: "list-group-item" do
 				span = c.name
 				span.badge = c.articles.count
+.recent
+	label 最近の投稿
+	- Article.recent.limit(10).each do |a|
+		span = link_to a.title, article_path(a), class: "list-group-item"
+
 .archive
 	label アーカイブ
 	ul.list-group
