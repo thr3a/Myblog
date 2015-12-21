@@ -13,7 +13,7 @@ class Article < ActiveRecord::Base
 	validates :author_id, presence: true
 	validate :author_id, :authenticate_user
 
-	scope :recent, -> { order(created_at: :desc) }
+	scope :recent, -> { order(:created_at).reverse_order }
 	scope :fetchpage, ->(page, per_page) { paginate(page: page, per_page: per_page)}
 
 	private
