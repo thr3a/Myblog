@@ -43,11 +43,11 @@ html
 			footer
 				p.text-center = link_to Myblog::Application.config.title, root_path
 	
-	- if Rails.env.production?
+	- if Rails.env.development?
 		javascript:
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-			ga('create', #{Rails.application.secrets.google_analytics_id}, 'auto');
+			ga('create', '#{Rails.application.secrets.google_analytics_id}', 'auto');
 			ga('send', 'pageview');
