@@ -32,7 +32,7 @@ module Myblog
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.title = "嫌われる備忘録"
-    config.description = "サーバーサイドとかフロントエンドとかのまとめ"
+    config.title = "さもないと"
+    config.description = "サーバーサイドとかフロントエンドとか備忘録"
   end
 end

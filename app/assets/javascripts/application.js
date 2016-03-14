@@ -12,7 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require data-confirm-modal
-//= require google_analytics
 //= require_tree .

@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -53,8 +53,6 @@ gem 'coderay'
 gem 'will_paginate-bootstrap'
 gem 'by_star'
 gem 'omniauth-twitter'
-# export TWITTER_KEY=lME8Y7yU87oMo5rIprBuarTP0
-# export TWITTER_SECRET=xIsN2onlKcwcodO5aDTmTZynDbap4fxeBjJUZmB32O4Cmnc1CV
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 # for mac
 gem 'mysql2', '~> 0.3.20'
