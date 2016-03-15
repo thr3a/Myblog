@@ -11,6 +11,8 @@ html
 		= favicon_link_tag 'favicon.ico'
 		= stylesheet_link_tag    "application", media: 'all'
 		= javascript_include_tag "application"
+		- if Rails.env.production?
+			script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
 		= yield :additional_header
 		= csrf_meta_tags
 	body.no-thank-yu
@@ -37,6 +39,11 @@ html
 						.alert.alert-danger = message
 			.row
 				.col-md-9
+					- if Rails.env.production?
+						.panel.panel-default
+							ins.adsbygoogle(style="display:block" data-ad-client="#{Rails.application.secrets.adsense_id}" data-ad-slot="3059909240" data-ad-format="auto")
+						javascript:
+							(adsbygoogle = window.adsbygoogle || []).push({});
 					= yield
 				.col-md-3
 					= render "sidebar"
