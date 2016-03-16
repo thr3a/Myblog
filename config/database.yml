@@ -6,13 +6,13 @@
 #
 default: &default
   adapter: mysql2
-  database: blog
   host: 192.168.1.30
   username: user
   password: pass
   encoding: utf8
 
 development:
+  database: blog_dev
   <<: *default
 
 # Warning: The database defined as "test" will be erased and
@@ -21,4 +21,5 @@ development:
 test:
   <<: *default
 production:
+  database: blog
   <<: *default
