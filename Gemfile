@@ -50,7 +50,7 @@ gem "slim-rails"
 gem 'bootstrap_form'
 gem 'redcarpet'
 gem 'coderay'
-gem 'will_paginate-bootstrap'
+# gem 'will_paginate-bootstrap'
 gem 'by_star'
 gem 'omniauth-twitter'
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
@@ -59,3 +59,4 @@ gem 'mysql2', '~> 0.3.20'
 # for other
 # gem 'mysql2'
 gem 'therubyracer'
+gem 'kaminari'

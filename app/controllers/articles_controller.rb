@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
 
 	# GET /
 	def index
-		@articles = Article.recent.fetchpage(params[:page], 5)
+		@articles = Article.recent.page params[:page]
 	end
 
 	# GET /articles/new
@@ -69,7 +69,7 @@ class ArticlesController < ApplicationController
 	def category
 		if(category = Category.find_by(name: params[:name]))
 			@title = "#{category.name}の記事一覧"
-			@articles = category.articles.recent.fetchpage(params[:page], 5)
+			@articles = category.articles.recent.page params[:page]
 			render :index
 		else
 			redirect_to root_path
@@ -87,10 +87,10 @@ class ArticlesController < ApplicationController
 	# GET /archive/:year/:month
 	def archive
 		if params[:month].present?
-			@articles = Article.by_month(params[:month], year: params[:year]).recent.fetchpage(params[:page], 5)
+			@articles = Article.by_month(params[:month], year: params[:year]).recent.page params[:page]
 			@title = "#{params[:year]}年#{params[:month]}月の記事一覧"
 		else
-			@articles = Article.by_year(params[:year]).recent.fetchpage(params[:page], 5)
+			@articles = Article.by_year(params[:year]).recent.page params[:page]
 			@title = "#{params[:year]}年の記事一覧"
 		end
 		render :index
@@ -98,7 +98,7 @@ class ArticlesController < ApplicationController
 
 	# GET /admin
 	def admin
-		@articles = Article.where(author_id: session[:user]["uid"]).recent.fetchpage(params[:page], 20)
+		@articles = Article.where(author_id: session[:user]["uid"]).recent.page params[:page]
 		render :admin
 	end
 

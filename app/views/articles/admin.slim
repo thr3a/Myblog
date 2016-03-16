@@ -15,4 +15,4 @@
 								= link_to "編集", edit_article_path(article), class: "btn btn-primary"
 								= link_to "削除", article, method: :delete, data: {confirm: '削除しますね?'}, class: "btn btn-danger"
 	.text-center
-		= will_paginate @articles, renderer: BootstrapPagination::Rails, previous_label: "前", next_label: "次", inner_window: 2
+		= paginate @articles

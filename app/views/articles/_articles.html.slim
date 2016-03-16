@@ -7,4 +7,4 @@
 				.col-md-3.text-right
 					span.small = article.created_at.to_s :date
 .text-center
-	= will_paginate articles, renderer: BootstrapPagination::Rails, previous_label: "前", next_label: "次", inner_window: 2
+	= paginate articles

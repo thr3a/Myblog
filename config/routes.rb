@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 		get 'archive', on: :collection # archive_articles_pathが生成
 		get 'feed', on: :collection
 		get 'admin', on: :collection
+		get 'page/:page', action: :index, on: :collection
 	end
 	# post 'categories/create'
 	# delete 'categories/delete'
