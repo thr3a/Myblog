@@ -2,7 +2,12 @@ module ApplicationHelper
 	class HTMLwithCoderay < Redcarpet::Render::HTML
 		def block_code(code, language)
 			language ||= 'md'
-			CodeRay.scan(code, language.to_sym).div
+			begin
+				CodeRay.scan(code, language.to_sym).div
+			rescue => e
+				language = 'md'
+				CodeRay.scan(code, language.to_sym).div
+			end
 		end
 	end
 	def markdown(text)
