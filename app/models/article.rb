@@ -14,6 +14,8 @@ class Article < ActiveRecord::Base
 	validate :author_id, :authenticate_user
 
 	scope :recent, -> { order(:created_at).reverse_order }
+	scope :previous, -> (id){where("id > ?", id).order(:created_at).first}
+	scope :next, -> (id){recent.where("id < ?", id).recent.first}
 
 	private
 	def authenticate_user
